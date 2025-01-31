@@ -1,0 +1,35 @@
+.event-tracker {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .event-form input,
+  .event-form textarea {
+    padding: 5px;
+  }
+  
+  .event-form button {
+    padding: 5px 10px;
+    background: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .event-tracker ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .event-tracker li {
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+  }
