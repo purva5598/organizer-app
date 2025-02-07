@@ -1,43 +1,26 @@
 .calendar {
-  width: 300px;
-  height: 350px; /* Fixed height to prevent overflow */
   padding: 10px;
-  overflow: hidden; /* Hide any overflow content */
-  border-radius: 12px;
-  background: linear-gradient(to bottom right, #f3e8ff, #e1d7ff);
-  background-color: #ecd9f2;
-  font-family: 'Poppins', sans-serif;
-  color: #9c68ad;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .fc {
-  height: 100%; /* Ensure the calendar takes up full container height */
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Reduce the size of the calendar */
+.fc .fc-toolbar {
+  font-size: 14px;
 }
 
 .fc .fc-daygrid-day {
-  border: 1px solid #d1c4e9;
-  height: 20px; /* Smaller height for each cell */
-  min-height: 20px;
-  width: 20px; /* Smaller width */
-  font-size: 10px;
+  font-size: 12px;
 }
 
-.fc .fc-daygrid-day-number {
-  font-size: 8px; /* Reduce number size */
-}
-
-.fc .fc-toolbar-title {
-  font-size: 14px;
-  color: #9c68ad;
-}
-
-.fc .fc-button {
-  background-color: #9575cd;
-  font-size: 10px;
+.fc .fc-daygrid-event {
+  font-size: 12px;
   padding: 2px 4px;
-  border-radius: 4px;
-}
-
-.fc .fc-button:hover {
-  background-color: #7e57c2;
 }

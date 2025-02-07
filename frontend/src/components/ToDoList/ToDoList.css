@@ -1,70 +1,64 @@
 .todo-list {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #ecd9f2;
-    h2{
-      color: #9c68ad;
-    }
-  }
-  
-  .add-task {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .add-task input {
-    flex: 1;
-    padding: 5px;
-    background: #f8f6f9;
-    border-radius: 8px;
-    /* border: #552b2b; */
-  }
-  
-  .add-task button {
-    padding: 5px 10px;
-    background: #c09dcc;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .todo-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 5px;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .todo-item.completed span {
-    text-decoration: line-through;
-    color: #c7b0d2;
-  }
-  
-  .todo-item /* Hide the default checkbox */
-  input[type="checkbox"] {
-    /* appearance: none; */
-    width: 16px;
-    height: 16px;
-    border: 2px solid #7e57c2;
-    border-radius: 4px;
-    outline: none;
-    background-color: #f3e8ff;
-    cursor: pointer;
-  }
-  
-  /* Change color when checked */
-  /* input[type="checkbox"]:checked {
-    background-color: #e5dafa;
-  } */
-  
-  .todo-item button {
-    background: #dfa1a1;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    margin-left: auto;
-  }
+  padding: 20px;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-task {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.add-task input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+}
+
+.add-task button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-task button:hover {
+  background-color: #45a049;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #dddddd;
+}
+
+.todo-item.completed span {
+  text-decoration: line-through;
+  color: #888888;
+}
+
+.todo-item input[type='checkbox'] {
+  cursor: pointer;
+}
+
+.todo-item button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.todo-item button:hover {
+  background-color: #e60000;
+}

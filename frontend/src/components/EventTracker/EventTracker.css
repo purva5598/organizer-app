@@ -1,35 +1,44 @@
 .event-tracker {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .event-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .event-form input,
-  .event-form textarea {
-    padding: 5px;
-  }
-  
-  .event-form button {
-    padding: 5px 10px;
-    background: #4caf50;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .event-tracker ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .event-tracker li {
-    padding: 5px;
-    border-bottom: 1px solid #eee;
-  }
+  padding: 20px;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.event-form input,
+.event-form textarea {
+  padding: 8px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+}
+
+.event-form button {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.event-form button:hover {
+  background-color: #f57c00;
+}
+
+.event-tracker ul {
+  list-style: none;
+  padding: 0;
+}
+
+.event-tracker li {
+  padding: 10px;
+  border-bottom: 1px solid #dddddd;
+}
