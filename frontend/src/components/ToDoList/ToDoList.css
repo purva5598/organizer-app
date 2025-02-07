@@ -2,6 +2,10 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: #ecd9f2;
+    h2{
+      color: #9c68ad;
+    }
   }
   
   .add-task {
@@ -13,11 +17,14 @@
   .add-task input {
     flex: 1;
     padding: 5px;
+    background: #f8f6f9;
+    border-radius: 8px;
+    /* border: #552b2b; */
   }
   
   .add-task button {
     padding: 5px 10px;
-    background: #4caf50;
+    background: #c09dcc;
     color: white;
     border: none;
     cursor: pointer;
@@ -33,15 +40,28 @@
   
   .todo-item.completed span {
     text-decoration: line-through;
-    color: #888;
+    color: #c7b0d2;
   }
   
-  .todo-item input[type='checkbox'] {
+  .todo-item /* Hide the default checkbox */
+  input[type="checkbox"] {
+    /* appearance: none; */
+    width: 16px;
+    height: 16px;
+    border: 2px solid #7e57c2;
+    border-radius: 4px;
+    outline: none;
+    background-color: #f3e8ff;
     cursor: pointer;
   }
   
+  /* Change color when checked */
+  /* input[type="checkbox"]:checked {
+    background-color: #e5dafa;
+  } */
+  
   .todo-item button {
-    background: #ff4d4d;
+    background: #dfa1a1;
     color: white;
     border: none;
     padding: 5px 10px;
