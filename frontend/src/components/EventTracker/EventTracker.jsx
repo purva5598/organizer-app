@@ -13,7 +13,7 @@ const EventTracker = ({ events, addEvent, isGuest }) => {
       const addEventBackend = async () => {
         try {
           const res = await axios.post(
-            'http://localhost:5000/api/events',
+            'https://organizer-app-ru2o.onrender.com/api/events',
             event,
             { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
           );

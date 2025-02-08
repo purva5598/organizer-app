@@ -17,7 +17,7 @@ const ToDoList = ({ tasks, addTask, toggleTask, isGuest }) => {
         const addTaskBackend = async () => {
           try {
             const res = await axios.post(
-              'http://localhost:5000/api/tasks',
+              'https://organizer-app-ru2o.onrender.com/api/tasks',
               { text: newTask },
               { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
             );

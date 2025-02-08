@@ -18,17 +18,17 @@ const Dashboard = ({ token, isGuest, setToken }) => {
       // Fetch data for authenticated users
       const fetchData = async () => {
         try {
-          const tasksRes = await axios.get('http://localhost:5000/api/tasks', {
+          const tasksRes = await axios.get('https://organizer-app-ru2o.onrender.com/api/tasks', {
             headers: { Authorization: `Bearer ${token}` },
           });
           setTasks(tasksRes.data);
 
-          const eventsRes = await axios.get('http://localhost:5000/api/events', {
+          const eventsRes = await axios.get('https://organizer-app-ru2o.onrender.com/api/events', {
             headers: { Authorization: `Bearer ${token}` },
           });
           setEvents(eventsRes.data);
 
-          const userRes = await axios.get('http://localhost:5000/api/auth/user', {
+          const userRes = await axios.get('https://organizer-app-ru2o.onrender.com/api/auth/user', {
             headers: { Authorization: `Bearer ${token}` },
           });
           setUsername(userRes.data.username);
@@ -58,7 +58,7 @@ const Dashboard = ({ token, isGuest, setToken }) => {
       const toggleTaskBackend = async () => {
         try {
           const res = await axios.put(
-            `http://localhost:5000/api/tasks/${taskId}/toggle`,
+            `https://organizer-app-ru2o.onrender.com/api/tasks/${taskId}/toggle`,
             {},
             { headers: { Authorization: `Bearer ${token}` } }
           );
