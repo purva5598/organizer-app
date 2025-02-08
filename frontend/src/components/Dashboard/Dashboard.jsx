@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import ToDoList from '../ToDoList/ToDoList';
 import Calendar from '../Calendar/Calendar';
-import PieChart from '../PieChart/PieChart';
+import PieChart from '../PieChart/Piechart';
 import EventTracker from '../EventTracker/EventTracker';
 import './Dashboard.css';
 
