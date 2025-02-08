@@ -3,21 +3,31 @@ import axios from 'axios';
 import ToDoItem from './ToDoItem';
 import './ToDoList.css';
 
-const ToDoList = ({ tasks, addTask, token, toggleTask }) => {
+const ToDoList = ({ tasks, addTask, toggleTask, isGuest }) => {
   const [newTask, setNewTask] = useState('');
 
-  const handleAddTask = async () => {
+  const handleAddTask = () => {
     if (newTask.trim()) {
-      try {
-        const res = await axios.post(
-          'http://localhost:5000/api/tasks',
-          { text: newTask },
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
-        addTask(res.data);
+      if (isGuest) {
+        // Add task locally for guest
+        addTask({ text: newTask });
         setNewTask('');
-      } catch (err) {
-        console.error(err);
+      } else {
+        // Add task in the backend for authenticated users
+        const addTaskBackend = async () => {
+          try {
+            const res = await axios.post(
+              'http://localhost:5000/api/tasks',
+              { text: newTask },
+              { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
+            );
+            addTask(res.data);
+            setNewTask('');
+          } catch (err) {
+            console.error(err);
+          }
+        };
+        addTaskBackend();
       }
     }
   };
@@ -36,7 +46,7 @@ const ToDoList = ({ tasks, addTask, token, toggleTask }) => {
       </div>
       <ul>
         {tasks.map((task) => (
-          <ToDoItem key={task._id} task={task} toggleTask={toggleTask} />
+          <ToDoItem key={task.id || task._id} task={task} toggleTask={toggleTask} />
         ))}
       </ul>
     </div>

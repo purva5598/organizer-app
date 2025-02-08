@@ -3,17 +3,26 @@ import axios from 'axios';
 import EventForm from './EventForm';
 import './EventTracker.css';
 
-const EventTracker = ({ events, addEvent, token }) => {
-  const handleAddEvent = async (event) => {
-    try {
-      const res = await axios.post(
-        'http://localhost:5000/api/events',
-        event,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      addEvent(res.data);
-    } catch (err) {
-      console.error(err);
+const EventTracker = ({ events, addEvent, isGuest }) => {
+  const handleAddEvent = (event) => {
+    if (isGuest) {
+      // Add event locally for guest
+      addEvent(event);
+    } else {
+      // Add event in the backend for authenticated users
+      const addEventBackend = async () => {
+        try {
+          const res = await axios.post(
+            'http://localhost:5000/api/events',
+            event,
+            { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
+          );
+          addEvent(res.data);
+        } catch (err) {
+          console.error(err);
+        }
+      };
+      addEventBackend();
     }
   };
 
@@ -23,7 +32,7 @@ const EventTracker = ({ events, addEvent, token }) => {
       <EventForm addEvent={handleAddEvent} />
       <ul>
         {events.map((event) => (
-          <li key={event._id}>
+          <li key={event.id || event._id}>
             <strong>{event.title}</strong> - {event.date} - {event.description}
           </li>
         ))}

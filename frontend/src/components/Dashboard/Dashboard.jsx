@@ -10,11 +10,12 @@ import './Dashboard.css';
 const Dashboard = ({ token, isGuest, setToken }) => {
   const [tasks, setTasks] = useState([]);
   const [events, setEvents] = useState([]);
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState('Guest');
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!isGuest && token) {
+      // Fetch data for authenticated users
       const fetchData = async () => {
         try {
           const tasksRes = await axios.get('http://localhost:5000/api/tasks', {
@@ -46,19 +47,50 @@ const Dashboard = ({ token, isGuest, setToken }) => {
     navigate('/login');
   };
 
-  const toggleTask = async (taskId) => {
-    try {
-      const res = await axios.put(
-        `http://localhost:5000/api/tasks/${taskId}/toggle`,
-        {},
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      setTasks(tasks.map((task) => (task._id === taskId ? res.data : task)));
-    } catch (err) {
-      console.error(err);
+  const toggleTask = (taskId) => {
+    if (isGuest) {
+      // Toggle task locally for guest
+      setTasks(tasks.map((task) =>
+        task.id === taskId ? { ...task, completed: !task.completed } : task
+      ));
+    } else {
+      // Toggle task in the backend for authenticated users
+      const toggleTaskBackend = async () => {
+        try {
+          const res = await axios.put(
+            `http://localhost:5000/api/tasks/${taskId}/toggle`,
+            {},
+            { headers: { Authorization: `Bearer ${token}` } }
+          );
+          setTasks(tasks.map((task) => (task._id === taskId ? res.data : task)));
+        } catch (err) {
+          console.error(err);
+        }
+      };
+      toggleTaskBackend();
     }
   };
-  
+
+  const addTask = (task) => {
+    if (isGuest) {
+      // Add task locally for guest
+      setTasks([...tasks, { ...task, id: Date.now(), completed: false }]);
+    } else {
+      // Add task in the backend for authenticated users
+      setTasks([...tasks, task]);
+    }
+  };
+
+  const addEvent = (event) => {
+    if (isGuest) {
+      // Add event locally for guest
+      setEvents([...events, { ...event, id: Date.now() }]);
+    } else {
+      // Add event in the backend for authenticated users
+      setEvents([...events, event]);
+    }
+  };
+
   return (
     <div className="dashboard">
       <h1 className="dashboard-title">{isGuest ? "Guest's Board" : `${username}'s Board`}</h1>
@@ -67,7 +99,7 @@ const Dashboard = ({ token, isGuest, setToken }) => {
       </button>
       <div className="dashboard-content">
         <div className="todo-section">
-          <ToDoList tasks={tasks} addTask={(task) => setTasks([...tasks, task])} token={token} toggleTask={toggleTask} />
+          <ToDoList tasks={tasks} addTask={addTask} toggleTask={toggleTask} isGuest={isGuest} />
         </div>
         <div className="calendar-section">
           <Calendar events={events} />
@@ -77,7 +109,7 @@ const Dashboard = ({ token, isGuest, setToken }) => {
         <PieChart tasks={tasks} />
       </div>
       <div className="event-section">
-        <EventTracker events={events} addEvent={(event) => setEvents([...events, event])} token={token} />
+        <EventTracker events={events} addEvent={addEvent} isGuest={isGuest} />
       </div>
     </div>
   );
