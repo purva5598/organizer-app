@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import ToDoItem from './ToDoItem';
 import './ToDoList.css';
 
-const ToDoList = ({ tasks, addTask, toggleTask, deleteTask }) => {
+const ToDoList = ({ tasks, addTask, token }) => {
   const [newTask, setNewTask] = useState('');
 
-  const handleAddTask = () => {
+  const handleAddTask = async () => {
     if (newTask.trim()) {
-      addTask({ id: Date.now(), text: newTask, completed: false });
-      setNewTask('');
+      try {
+        const res = await axios.post(
+          'http://localhost:5000/api/tasks',
+          { text: newTask },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        addTask(res.data);
+        setNewTask('');
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
@@ -26,12 +36,7 @@ const ToDoList = ({ tasks, addTask, toggleTask, deleteTask }) => {
       </div>
       <ul>
         {tasks.map((task) => (
-          <ToDoItem
-            key={task.id}
-            task={task}
-            toggleTask={toggleTask}
-            deleteTask={deleteTask}
-          />
+          <ToDoItem key={task._id} task={task} />
         ))}
       </ul>
     </div>

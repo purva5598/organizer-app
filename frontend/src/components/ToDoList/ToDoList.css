@@ -1,29 +1,29 @@
 .todo-list {
-  padding: 20px;
-  border: 1px solid #dddddd;
+  padding: 10px;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  background: #ffffff;
+  background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .add-task {
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .add-task input {
   flex: 1;
   padding: 8px;
-  border: 1px solid #dddddd;
+  border: 1px solid #ddd;
   border-radius: 4px;
 }
 
 .add-task button {
+  padding: 8px 16px;
   background-color: #4caf50;
   color: white;
   border: none;
-  padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -37,28 +37,10 @@
   align-items: center;
   gap: 10px;
   padding: 10px;
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid #ddd;
 }
 
 .todo-item.completed span {
   text-decoration: line-through;
-  color: #888888;
-}
-
-.todo-item input[type='checkbox'] {
-  cursor: pointer;
-}
-
-.todo-item button {
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: auto;
-}
-
-.todo-item button:hover {
-  background-color: #e60000;
+  color: #888;
 }

@@ -3,10 +3,12 @@ import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import './PieChart.css';
 
-// Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PieChart = ({ completedTasks, totalTasks }) => {
+const PieChart = ({ tasks }) => {
+  const completedTasks = tasks.filter((task) => task.completed).length;
+  const totalTasks = tasks.length;
+
   const data = {
     labels: ['Completed', 'Remaining'],
     datasets: [
@@ -18,22 +20,10 @@ const PieChart = ({ completedTasks, totalTasks }) => {
     ],
   };
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      tooltip: {
-        enabled: true,
-      },
-    },
-  };
-
   return (
     <div className="pie-chart">
       <h2>Progress</h2>
-      <Pie data={data} options={options} />
+      <Pie data={data} />
     </div>
   );
 };
