@@ -4,18 +4,6 @@ import Event from '../models/Event.js';
 
 const router = express.Router();
 
-// Fetch user data
-router.get('/user', auth, async (req, res) => {
-  try {
-    console.log("reaching");
-    const user = await User.findById(req.user.id).select('-password');
-    res.json(user);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
 // Fetch events for the authenticated user
 router.get('/', auth, async (req, res) => {
   try {

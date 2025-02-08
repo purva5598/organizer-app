@@ -21,6 +21,10 @@ const Login = ({ setToken }) => {
     }
   };
 
+  const handleGuestLogin = () => {
+    navigate('/guest'); // Redirect to guest dashboard
+  };
+
   return (
     <div className="auth-container">
       <h2>Login</h2>
@@ -33,6 +37,7 @@ const Login = ({ setToken }) => {
           onChange={(e) => setUsername(e.target.value)}
           required
         />
+        
         <input
           type="password"
           placeholder="Password"
@@ -48,6 +53,13 @@ const Login = ({ setToken }) => {
         style={{ marginTop: '10px', background: '#2196f3' }}
       >
         Signup
+      </button>
+      <button
+        type="button"
+        onClick={handleGuestLogin}
+        style={{ marginTop: '10px', background: '#ff9800' }}
+      >
+        Login as Guest
       </button>
     </div>
   );

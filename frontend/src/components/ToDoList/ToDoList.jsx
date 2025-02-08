@@ -3,7 +3,7 @@ import axios from 'axios';
 import ToDoItem from './ToDoItem';
 import './ToDoList.css';
 
-const ToDoList = ({ tasks, addTask, token }) => {
+const ToDoList = ({ tasks, addTask, token, toggleTask }) => {
   const [newTask, setNewTask] = useState('');
 
   const handleAddTask = async () => {
@@ -36,7 +36,7 @@ const ToDoList = ({ tasks, addTask, token }) => {
       </div>
       <ul>
         {tasks.map((task) => (
-          <ToDoItem key={task._id} task={task} />
+          <ToDoItem key={task._id} task={task} toggleTask={toggleTask} />
         ))}
       </ul>
     </div>

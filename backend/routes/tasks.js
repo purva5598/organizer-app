@@ -26,4 +26,18 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
+// Toggle task completion
+router.put('/:id/toggle', auth, async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id);
+    if (!task) return res.status(404).json({ error: 'Task not found' });
+
+    task.completed = !task.completed;
+    await task.save();
+    res.json(task);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 export default router;
